@@ -4,4 +4,5 @@
     <string name="surname">Surname</string>
     <string name="marks">Marks</string>
     <string name="add_data">ADD DATA</string>
+    <string name="lihat_data">Lihat data</string>
 </resources>

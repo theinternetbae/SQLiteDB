@@ -1,5 +1,6 @@
 package com.example.kaligaswag.moresqlite;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
 
     DBHelper mydb;
     EditText name, surname, marks;
-    Button addData;
+    Button addData, lihat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +27,19 @@ public class MainActivity extends AppCompatActivity {
         surname = (EditText) findViewById(R.id.surnameEditText);
         marks = (EditText) findViewById(R.id.marksEditText);
         addData = (Button) findViewById(R.id.buttonAdd);
+        lihat = (Button) findViewById(R.id.buttonLihat);
         insert();
+        lihat();
+    }
+
+    private void lihat() {
+        lihat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, LihatActivity.class);
+                startActivity(i);
+            }
+        });
     }
 
     public void insert(){
@@ -39,7 +52,8 @@ public class MainActivity extends AppCompatActivity {
                 String mar = marks.getText().toString();
 
                 if (nam.isEmpty() || sur.isEmpty() || mar.isEmpty()){
-                    Toast.makeText(MainActivity.this, "Silahkan lengkapi form terlebih dahulu", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Silahkan lengkapi form terlebih dahulu",
+                            Toast.LENGTH_SHORT).show();
                 } else {
 
                     boolean isInserted = mydb.insertData(nam, sur, Integer.parseInt(mar));
